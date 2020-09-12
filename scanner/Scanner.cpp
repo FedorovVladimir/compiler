@@ -9,26 +9,30 @@
 
 using namespace std;
 
+const int countWords = 1;
+const string words[] = {"void"};
+const TypeWord types[] = {VOID};
+
 class Scanner {
 
 private:
     string text;
-    int currentPosition;
+    int cp; // current position
 
     void swapGarbageSymbols() {
-        while (text[currentPosition] == ' ' || text[currentPosition] == '\n' || text[currentPosition] == '\t' ||
-               text[currentPosition] == '\r')
-            currentPosition++;
+        while (text[cp] == ' ' || text[cp] == '\n' || text[cp] == '\t' ||
+               text[cp] == '\r')
+            cp++;
     }
 
     void swapComment() {
-        if (text[currentPosition] == '/' && text[currentPosition + 1] == '/') {
-            currentPosition += 2;
-            while (text[currentPosition] != '\r' && text[currentPosition] != '\0')
-                currentPosition++;
-            currentPosition++;
-            while (text[currentPosition] == '\n') {
-                currentPosition++;
+        if (text[cp] == '/' && text[cp + 1] == '/') {
+            cp += 2;
+            while (text[cp] != '\r' && text[cp] != '\0')
+                cp++;
+            cp++;
+            while (text[cp] == '\n') {
+                cp++;
             }
         }
     }
@@ -36,23 +40,23 @@ private:
 public:
     explicit Scanner(string text) {
         this->text = move(text) + "\n";
-        this->currentPosition = 0;
+        this->cp = 0;
         cout << "Scanner get text!" << endl;
         cout << this->text << endl;
     }
 
     void setCurrentPosition(const int position) {
-        this->currentPosition = position;
+        this->cp = position;
     }
 
     int getCurrentPosition() {
-        return currentPosition;
+        return cp;
     }
 
     Word *next() {
         int i = getCurrentPosition();
         read();
-        Word *p = next();
+        Word *p = read();
         setCurrentPosition(i);
         return p;
     }
@@ -67,6 +71,25 @@ public:
     Word *read() {
         swapGarbageSymbols();
         swapComment();
+
+        if (cp == text.length()) {
+            return new Word(END_OF_FILE);
+        }
+
+        if (isalpha(text[cp])) {
+            string s;
+            s += text[cp++];
+            while (isdigit(text[cp]) || isalpha(text[cp])) {
+                s += text[cp++];
+            }
+            for (int i = 0; i < countWords; i++) {
+                if (s == words[i]) {
+                    return new Word(types[i]);
+                }
+            }
+            return new Word(ID, s);
+        }
+
         return new Word(ERROR);
     }
 };

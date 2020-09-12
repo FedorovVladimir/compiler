@@ -3,8 +3,6 @@
 #include "scanner/Scanner.cpp"
 #include "scanner/TypeWord.cpp"
 
-const char *str(Word *w);
-
 using namespace std;
 
 string readCode(const string &path) {
@@ -23,11 +21,12 @@ int main() {
         return 0;
     }
 
+    // создаем сканер
     auto *scanner = new Scanner(text);
 
-    while (scanner->current() != END_OF_FILE) {
+    while (scanner->current() != END_OF_FILE && scanner->current() != ERROR) {
         cout << scanner->current()->str() << endl;
-        scanner->next();
+        scanner->read();
     }
     cout << scanner->current()->str() << endl;
 

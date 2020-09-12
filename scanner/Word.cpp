@@ -2,6 +2,8 @@
 // Created by 3crabs on 12.09.2020.
 //
 
+#include <utility>
+
 #include "string"
 #include "TypeWord.cpp"
 
@@ -16,6 +18,8 @@ private:
 public:
     explicit Word(TypeWord typeWord) : typeWord(typeWord) {}
 
+    Word(TypeWord typeWord, string text) : typeWord(typeWord), text(move(text)) {}
+
     friend bool operator!=(const Word *w, TypeWord tw) {
         return w->typeWord != tw;
     }
@@ -29,6 +33,10 @@ public:
             return "ERROR";
         } else if (tw == END_OF_FILE) {
             return "END_OF_FILE";
+        } else if (tw == VOID) {
+            return "VOID";
+        } else if (tw == ID) {
+            return "ID";
         } else {
             return "TypeWord not found!";
         }
