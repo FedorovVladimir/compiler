@@ -45,6 +45,10 @@ public:
             return "{";
         } else if (tw == CLOSE_FIGURNAY) {
             return "}";
+        } else if (tw == CONST_STR) {
+            return "CONST_STR";
+        } else if (tw == POINT_COMMA) {
+            return ";";
         } else {
             return "TypeWord not found!";
         }

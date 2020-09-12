@@ -14,12 +14,13 @@ const string words[] = {"void"};
 const TypeWord wordsTypes[] = {VOID};
 
 
-const string ones = "(){}";
+const string ones = "(){};";
 const TypeWord onesTypes[] = {
         OPEN_KRUGLAY,
         CLOSE_KRUGLAY,
         OPEN_FIGURNAY,
-        CLOSE_FIGURNAY
+        CLOSE_FIGURNAY,
+        POINT_COMMA
 };
 
 class Scanner {
@@ -101,11 +102,22 @@ public:
             return new Word(ID, s);
         }
 
-        // ()
+        // ();
         int indexOneSymbols = ones.find(text[cp]);
         if (0 <= indexOneSymbols && indexOneSymbols < ones.length()) {
             cp++;
             return new Word(onesTypes[indexOneSymbols]);
+        }
+
+        // const_string
+        if (text[cp] == '"') {
+            cp++;
+            string s;
+            while (text[cp] != '"') {
+                s += text[cp++];
+            }
+            cp++;
+            return new Word(CONST_STR, s);
         }
 
         return new Word(ERROR);
