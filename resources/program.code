@@ -1,3 +1,172 @@
 void main() {
     print("hello world");
 }
+
+// ФУНКЦИЯ, КОТОРАЯ ВОЗВРАЩАЕТ ЧТО НИБУДЬ
+// SWITCH
+// WHILE
+int main()
+{
+
+    double num1,num2;
+    char operation,redo;
+    while(redo != 'y)
+    {
+        //----receiving the variables from input--------------
+        print<<" Please enter an operation which you like to calculate (+,-,*,/,s)";
+        print<<"[s stands for swap]:";
+        cin>>operation ;
+        print<<endl<<endl;
+        print<<" Please enter two numbers to apply your requested operation(";
+        print<<operation<<"):"<<endl<<"1st num:";
+        cin>>num1;
+        print<<"2nd num:" ;
+        cin>>num2;
+        print<<endl;
+        //---used switch function so thet the operater can be decided------------
+        switch (operation)
+        {
+        //------calculating the requested equation for inputs-------------
+        //-------at the same time printing the results on screen-----------
+        case'+':
+            print<<"The addition of two numbers ("<<num1<<","<<num2<<"):";
+            print<<num1+num2<<endl;
+            break;
+        case'-':
+            print<<"The substraction of two numbers ("<<num1<<","<<num2<<"):";
+            print<<num1-num2<<endl;
+            break;
+        case'*':
+            print<<"The multiplication of two numbers ("<<num1<<","<<num2<<"):";
+            print<<num1*num2<<endl;
+            break;
+        case'/':
+            print<<"The division of two numbers ("<<num1<<","<<num2<<"):";
+            if(num2==0)
+            {
+                print<<"not valid"<<endl;
+            }
+            print<<(num1/num2)<<endl;
+            break;
+        case's':
+            print<<"The swap of two numbers ("<<num1<<","<<num2<<"):";
+            swap(num1,num2);
+            print<<"1stnumber="<<num1<<"and 2nd number="<<num2<<endl<<endl;
+            break;
+        default:
+            print<<"unknown command"<<endl;
+
+        }
+        //----now once again the program will ask the user if want to continue or not
+        print<<"enter y or Y to continue:";
+        cin>>redo;
+        print<<endl<<endl;
+    }
+
+    return 0;
+}
+
+// IF
+int main()
+{
+    int no;
+    print << "Enter any number: ";
+    cin >> no;
+    if(no%2==0)
+    {
+        print<<"Even number";
+    }
+    else
+    {
+        print<<"Odd number";
+    }
+    return 0;
+}
+
+// ПРИСВАИВАНИЕ
+int main()
+{
+    int a,b,c;
+    print << "Enter value of a: ";
+    cin >> a;
+    print << "Enter value of b: ";
+    cin >> b;
+    c=a;
+    a=b;
+    b=c;
+    print<<"After swaping a: "<< a << " b: " << b;
+    return 0;
+}
+
+// ФУНКЦИИ И ЕЕ ВЫЗОВ
+void main(){
+    if perfectNumber(4)
+    {
+        return print("Perfect Number")
+    }
+    else
+    {
+        return print("NOT Perfect Number")
+    }
+}
+
+bool perfectNumber(n)
+{
+    int i=1,sum=0;
+    print<<"Enter a number: ";
+    cin >> n;
+    while(i<n){
+        if(n%i==0)
+            sum=sum+i;
+        i++;
+    }
+    if(sum==n)
+    {
+        return true
+    }
+    else
+    {
+        return false
+    }
+}
+
+// FOR, ARRAY, INC
+int main(){
+    int array[5];
+    print<<"Enter 5 numbers randomly : ";
+    for(int i=0; i<5; i++)
+    {
+        cin>>array[i];
+    }
+    
+    print<<"Input array is: ";
+    
+    for(int j=0; j<5; j++)
+    {
+        
+        print(j);
+    }
+    
+    // Bubble Sort Starts Here
+    int temp;
+    for(int i2=0; i2<=4; i2++)
+    {
+        for(int j=0; j<4; j++)
+        {
+            //Swapping element in if statement
+            if(array[j]>array[j+1])
+            {
+                temp=array[j];
+                array[j]=array[j+1];
+                array[j+1]=temp;
+            }
+        }
+    }
+    // Displaying Sorted array
+    print<<"  Sorted Array is: "<<endl;
+    for(int i3=0; i3<5; i3++)
+    {
+        print<<"\t\t\tValue at "<<i3<<" Index: "<<array[i3]<<endl;
+    }
+    return 0;
+}

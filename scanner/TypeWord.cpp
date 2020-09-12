@@ -34,6 +34,7 @@ enum TypeWord {
     ARRAY,
     BREAK,
     DEFAULT,
+    RETURN
 
     // Идентификатор
     ID,
