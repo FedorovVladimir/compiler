@@ -37,6 +37,14 @@ public:
             return "VOID";
         } else if (tw == ID) {
             return "ID";
+        } else if (tw == OPEN_KRUGLAY) {
+            return "(";
+        } else if (tw == CLOSE_KRUGLAY) {
+            return ")";
+        } else if (tw == OPEN_FIGURNAY) {
+            return "{";
+        } else if (tw == CLOSE_FIGURNAY) {
+            return "}";
         } else {
             return "TypeWord not found!";
         }

@@ -11,7 +11,16 @@ using namespace std;
 
 const int countWords = 1;
 const string words[] = {"void"};
-const TypeWord types[] = {VOID};
+const TypeWord wordsTypes[] = {VOID};
+
+
+const string ones = "(){}";
+const TypeWord onesTypes[] = {
+        OPEN_KRUGLAY,
+        CLOSE_KRUGLAY,
+        OPEN_FIGURNAY,
+        CLOSE_FIGURNAY
+};
 
 class Scanner {
 
@@ -72,10 +81,12 @@ public:
         swapGarbageSymbols();
         swapComment();
 
+        // end of file
         if (cp == text.length()) {
             return new Word(END_OF_FILE);
         }
 
+        // words
         if (isalpha(text[cp])) {
             string s;
             s += text[cp++];
@@ -84,10 +95,17 @@ public:
             }
             for (int i = 0; i < countWords; i++) {
                 if (s == words[i]) {
-                    return new Word(types[i]);
+                    return new Word(wordsTypes[i]);
                 }
             }
             return new Word(ID, s);
+        }
+
+        // ()
+        int indexOneSymbols = ones.find(text[cp]);
+        if (0 <= indexOneSymbols && indexOneSymbols < ones.length()) {
+            cp++;
+            return new Word(onesTypes[indexOneSymbols]);
         }
 
         return new Word(ERROR);
