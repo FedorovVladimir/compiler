@@ -49,6 +49,10 @@ public:
             return "CONST_STR";
         } else if (tw == POINT_COMMA) {
             return ";";
+        } else if (tw == INT) {
+            return "int";
+        } else if (tw == DOUBLE) {
+            return "double";
         } else {
             return "TypeWord not found!";
         }
