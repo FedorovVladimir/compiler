@@ -53,6 +53,26 @@ public:
             return "int";
         } else if (tw == DOUBLE) {
             return "double";
+        } else if (tw == COMMA) {
+            return ",";
+        } else if (tw == NOT_EQUAL) {
+            return "!=";
+        } else if (tw == PLS) {
+            return "+";
+        } else if (tw == SWITCH) {
+            return "switch";
+        } else if (tw == CASE) {
+            return "case";
+        } else if (tw == CONST_CHAR) {
+            return "CONST_CHAR";
+        } else if (tw == POINT_POINT) {
+            return ":";
+        } else if (tw == BREAK) {
+            return "break";
+        } else if (tw == MNS) {
+            return "-";
+        } else if (tw == EQUAL_EQUAL) {
+            return "==";
         } else {
             return "TypeWord not found!";
         }

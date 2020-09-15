@@ -46,6 +46,7 @@ enum TypeWord {
     LARGER_EQUAL,
     EQUAL,
     NOT_EQUAL,
+    EQUAL_EQUAL,
     SAVE,
 
     // Специальные знаки
@@ -56,6 +57,7 @@ enum TypeWord {
     CLOSE_FIGURNAY,
     COMMA,
     POINT,
+    POINT_POINT,
 
     // константы
     CONST_DEC,

@@ -9,18 +9,23 @@
 
 using namespace std;
 
-const int countWords = 3;
-const string words[] = {"void", "int", "double"};
-const TypeWord wordsTypes[] = {VOID, INT, DOUBLE};
+const int countWords = 7;
+const string words[] = {"void", "int", "double", "switch", "case", "break", "if"};
+const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF};
 
 
-const string ones = "(){};";
+const string ones = "(){};,+:-*";
 const TypeWord onesTypes[] = {
         OPEN_KRUGLAY,
         CLOSE_KRUGLAY,
         OPEN_FIGURNAY,
         CLOSE_FIGURNAY,
-        POINT_COMMA
+        POINT_COMMA,
+        COMMA,
+        PLS,
+        POINT_POINT,
+        MNS,
+        MUL
 };
 
 class Scanner {
@@ -95,7 +100,7 @@ public:
 
     Word *read() {
         swapGarbageSymbols();
-        while(swapComment()) {
+        while (swapComment()) {
             swapGarbageSymbols();
         }
 
@@ -126,6 +131,29 @@ public:
             return new Word(onesTypes[indexOneSymbols]);
         }
 
+        // !=
+        if (text[cp] == '!' && text[cp + 1] == '=') {
+            nextChar();
+            nextChar();
+            return new Word(NOT_EQUAL);
+        }
+        // ==
+        if (text[cp] == '=' && text[cp + 1] == '=') {
+            nextChar();
+            nextChar();
+            return new Word(EQUAL_EQUAL);
+        }
+
+        // const_char
+        if (text[cp] == '\'' && text[cp + 2] == '\'') {
+            char ch = text[cp + 1];
+            nextChar();
+            nextChar();
+            nextChar();
+            // TODO char плохо выводится
+            return new Word(CONST_CHAR, to_string(ch));
+        }
+
         // const_string
         if (text[cp] == '"') {
             nextChar();
@@ -136,6 +164,64 @@ public:
             nextChar();
             return new Word(CONST_STR, s);
         }
+
+        // const_int const_double
+        string s;
+        if (isdigit(text[cp])) {
+            s += text[cp];
+            nextChar();
+            while(isdigit(text[cp])) {
+                s += text[cp];
+                nextChar();
+            }
+            if (text[cp] == '.') {
+                s += text[cp];
+                nextChar();
+                goto N1;
+            } else if (text[currentPosition] == 'E' || text[currentPosition] == 'e') {
+                s += text[currentPosition++];
+                goto N2;
+            }
+            return new Node(CONST_INT, s);
+        }
+        if (text[currentPosition] == '.') {
+            s += text[currentPosition++];
+            if (isdigit(text[currentPosition])) {
+                s += text[currentPosition++];
+                goto N1;
+            }
+            return new Node(POINT, s);
+        }
+        N1:
+        while (isdigit(text[currentPosition])) {
+            s += text[currentPosition++];
+        }
+        if (text[currentPosition] == 'E' || text[currentPosition] == 'e') {
+            s += text[currentPosition++];
+            goto N2;
+        }
+        return new Node(CONST_DOUBLE, s);
+        N2:
+        if (text[currentPosition] == '+' || text[currentPosition] == '-') {
+            s += text[currentPosition++];
+            if (isdigit(text[currentPosition])) {
+                s += text[currentPosition++];
+                goto N3;
+            } else {
+                return new Node(ERROR);
+            }
+        }
+        N3:
+        while (isdigit(text[currentPosition])) {
+            s += text[currentPosition++];
+        }
+        char* value = new char[s.length() + 1];
+        strcpy(value, s.c_str());
+        char * str = strtok(value, "Ee");
+        double valueDouble = atof(str);
+        str = strtok(nullptr, "Ee");
+        valueDouble *= pow(10, atoi(str));
+        return new Node(CONST_DOUBLE, to_string(valueDouble));
 
         return new Word(ERROR, "line: " + to_string(cl) + " number: " + to_string(cc) + " char: " + text[cp]);
     }
