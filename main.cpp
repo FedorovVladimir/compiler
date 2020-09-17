@@ -15,7 +15,7 @@ string readCode(const string &path) {
 
 int main() {
     // чтаем файл
-    string text = readCode("/home/vladimir/CLionProjects/compiler/resources/program.code");
+    string text = readCode("/home/vladimir/CLionProjects/compiler/resources/program.c");
     if (text.empty()) {
         cout << "File not found!" << endl;
         return 0;
