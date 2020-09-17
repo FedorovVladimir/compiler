@@ -165,63 +165,17 @@ public:
             return new Word(CONST_STR, s);
         }
 
-        // const_int const_double
+        // const_dec
         string s;
         if (isdigit(text[cp])) {
             s += text[cp];
             nextChar();
-            while(isdigit(text[cp])) {
+            while (isdigit(text[cp])) {
                 s += text[cp];
                 nextChar();
             }
-            if (text[cp] == '.') {
-                s += text[cp];
-                nextChar();
-                goto N1;
-            } else if (text[currentPosition] == 'E' || text[currentPosition] == 'e') {
-                s += text[currentPosition++];
-                goto N2;
-            }
-            return new Node(CONST_INT, s);
+            return new Word(CONST_DEC, s);
         }
-        if (text[currentPosition] == '.') {
-            s += text[currentPosition++];
-            if (isdigit(text[currentPosition])) {
-                s += text[currentPosition++];
-                goto N1;
-            }
-            return new Node(POINT, s);
-        }
-        N1:
-        while (isdigit(text[currentPosition])) {
-            s += text[currentPosition++];
-        }
-        if (text[currentPosition] == 'E' || text[currentPosition] == 'e') {
-            s += text[currentPosition++];
-            goto N2;
-        }
-        return new Node(CONST_DOUBLE, s);
-        N2:
-        if (text[currentPosition] == '+' || text[currentPosition] == '-') {
-            s += text[currentPosition++];
-            if (isdigit(text[currentPosition])) {
-                s += text[currentPosition++];
-                goto N3;
-            } else {
-                return new Node(ERROR);
-            }
-        }
-        N3:
-        while (isdigit(text[currentPosition])) {
-            s += text[currentPosition++];
-        }
-        char* value = new char[s.length() + 1];
-        strcpy(value, s.c_str());
-        char * str = strtok(value, "Ee");
-        double valueDouble = atof(str);
-        str = strtok(nullptr, "Ee");
-        valueDouble *= pow(10, atoi(str));
-        return new Node(CONST_DOUBLE, to_string(valueDouble));
 
         return new Word(ERROR, "line: " + to_string(cl) + " number: " + to_string(cc) + " char: " + text[cp]);
     }

@@ -6,7 +6,6 @@
 //
 
 int main() {
-
     double num1, num2;
     char operation, redo;
     while (redo != y) {

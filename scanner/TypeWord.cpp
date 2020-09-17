@@ -56,7 +56,6 @@ enum TypeWord {
     OPEN_FIGURNAY,
     CLOSE_FIGURNAY,
     COMMA,
-    POINT,
     POINT_POINT,
 
     // константы
