@@ -121,6 +121,8 @@ public:
             return ">=";
         } else if (tw == WHILE) {
             return "while";
+        } else if (tw == CONST_HEX) {
+            return "CONST_HEX";
         } else {
             return "TypeWord not found!";
         }

@@ -71,6 +71,10 @@ private:
         return false;
     }
 
+    static bool isHEX(char ch) {
+        return isdigit(ch) || (ch >= 'A' && ch <= 'F') || (ch >= 'a' && ch <= 'f');
+    }
+
 public:
     explicit Scanner(string text) {
         this->text = move(text) + "\n";
@@ -193,9 +197,21 @@ public:
             return new Word(CONST_STR, s);
         }
 
+        // hex
+        if (text[cp] == '0' && text[cp + 1] == 'x') {
+            nextChar();
+            nextChar();
+            string s;
+            while (isHEX(text[cp])) {
+                s += text[cp];
+                nextChar();
+            }
+            return new Word(CONST_HEX, s);
+        }
+
         // const_dec
-        string s;
         if (isdigit(text[cp])) {
+            string s;
             s += text[cp];
             nextChar();
             while (isdigit(text[cp])) {

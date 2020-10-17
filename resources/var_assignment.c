@@ -16,6 +16,6 @@ int main() {
     char ch;
     short sh = 0;
     sh--;
-    long lg = ;
+    long lg = 0xf;
     return 0;
 }
