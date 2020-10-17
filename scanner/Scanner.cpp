@@ -14,7 +14,7 @@ const string words[] = {"void", "int", "double", "switch", "case", "break", "if"
 const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF};
 
 
-const string ones = "(){};,+:-*";
+const string ones = "(){};,+:-*/%";
 const TypeWord onesTypes[] = {
         OPEN_KRUGLAY,
         CLOSE_KRUGLAY,
@@ -25,7 +25,9 @@ const TypeWord onesTypes[] = {
         PLS,
         POINT_POINT,
         MNS,
-        MUL
+        MUL,
+        DIV,
+        MOD
 };
 
 class Scanner {

@@ -77,6 +77,16 @@ public:
             return "-";
         } else if (tw == EQUAL_EQUAL) {
             return "==";
+        } else if (tw == MUL) {
+            return "*";
+        } else if (tw == DIV) {
+            return "/";
+        } else if (tw == MOD) {
+            return "%";
+        } else if (tw == IF) {
+            return "if";
+        } else if (tw == CONST_DEC) {
+            return "CONST_DEC";
         } else {
             return "TypeWord not found!";
         }

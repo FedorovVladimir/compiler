@@ -14,6 +14,7 @@ string readCode(const string &path) {
 }
 
 void testScannerFile(const string &filename) {
+    cout << filename << endl;
     // чтаем файл
     string text = readCode(filename);
     if (text.empty()) {
@@ -27,10 +28,11 @@ void testScannerFile(const string &filename) {
         if (scanner->current() == ERROR) {
             cout << "ERROR in " << filename << endl;
         }
+//        cout << scanner->current()->str() << endl;
         scanner->read();
     }
 
-    cout << "OK" << endl;
+    cout << "OK" << endl << endl;
 }
 
 void testScannerAllFiles() {
