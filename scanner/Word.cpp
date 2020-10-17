@@ -87,6 +87,20 @@ public:
             return "if";
         } else if (tw == CONST_DEC) {
             return "CONST_DEC";
+        } else if (tw == BOOL) {
+            return "BOOL";
+        } else if (tw == EQUAL) {
+            return "=";
+        } else if (tw == LESS) {
+            return "<";
+        } else if (tw == INC) {
+            return "++";
+        } else if (tw == TRUE) {
+            return "true";
+        } else if (tw == FALSE) {
+            return "false";
+        } else if (tw == ELSE) {
+            return "else";
         } else {
             return "TypeWord not found!";
         }

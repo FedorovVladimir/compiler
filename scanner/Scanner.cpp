@@ -9,12 +9,12 @@
 
 using namespace std;
 
-const int countWords = 7;
-const string words[] = {"void", "int", "double", "switch", "case", "break", "if"};
-const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF};
+const int countWords = 11;
+const string words[] = {"void", "int", "double", "switch", "case", "break", "if", "bool", "true", "false", "else"};
+const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF, BOOL, TRUE, FALSE, ELSE};
 
 
-const string ones = "(){};,+:-*/%";
+const string ones = "(){};,+:-*/%=<";
 const TypeWord onesTypes[] = {
         OPEN_KRUGLAY,
         CLOSE_KRUGLAY,
@@ -27,7 +27,10 @@ const TypeWord onesTypes[] = {
         MNS,
         MUL,
         DIV,
-        MOD
+        MOD,
+        EQUAL,
+        LESS,
+        ELSE
 };
 
 class Scanner {
@@ -124,13 +127,6 @@ public:
             return new Word(ID, s);
         }
 
-        // ();
-        int indexOneSymbols = ones.find(text[cp]);
-        if (0 <= indexOneSymbols && indexOneSymbols < ones.length()) {
-            nextChar();
-            return new Word(onesTypes[indexOneSymbols]);
-        }
-
         // !=
         if (text[cp] == '!' && text[cp + 1] == '=') {
             nextChar();
@@ -142,6 +138,19 @@ public:
             nextChar();
             nextChar();
             return new Word(EQUAL_EQUAL);
+        }
+        // ++
+        if (text[cp] == '+' && text[cp + 1] == '+') {
+            nextChar();
+            nextChar();
+            return new Word(INC);
+        }
+
+        // ();
+        int indexOneSymbols = ones.find(text[cp]);
+        if (0 <= indexOneSymbols && indexOneSymbols < ones.length()) {
+            nextChar();
+            return new Word(onesTypes[indexOneSymbols]);
         }
 
         // const_char

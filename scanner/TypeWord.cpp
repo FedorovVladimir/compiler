@@ -15,6 +15,8 @@ enum TypeWord {
     CHAR,
     SHORT,
     LONG,
+    TRUE,
+    FALSE,
 
     // Знаки арифметических операций
     PLS,
