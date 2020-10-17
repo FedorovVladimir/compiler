@@ -101,6 +101,18 @@ public:
             return "false";
         } else if (tw == ELSE) {
             return "else";
+        } else if (tw == CHAR) {
+            return "char";
+        } else if (tw == SHORT) {
+            return "short";
+        } else if (tw == LONG) {
+            return "long";
+        } else if (tw == DEC) {
+            return "--";
+        } else if (tw == RETURN) {
+            return "return";
+        } else if (tw == DEFAULT) {
+            return "default";
         } else {
             return "TypeWord not found!";
         }

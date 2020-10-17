@@ -12,5 +12,10 @@ int main() {
     b = c;
     print(a);
     print(b);
+
+    char ch;
+    short sh = 0;
+    sh--;
+    long lg;
     return 0;
 }

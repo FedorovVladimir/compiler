@@ -17,6 +17,7 @@ enum TypeWord {
     LONG,
     TRUE,
     FALSE,
+    RETURN,
 
     // Знаки арифметических операций
     PLS,
@@ -36,7 +37,6 @@ enum TypeWord {
     ARRAY,
     BREAK,
     DEFAULT,
-    RETURN,
 
     // Идентификатор
     ID,

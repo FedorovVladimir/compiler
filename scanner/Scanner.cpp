@@ -9,9 +9,9 @@
 
 using namespace std;
 
-const int countWords = 11;
-const string words[] = {"void", "int", "double", "switch", "case", "break", "if", "bool", "true", "false", "else"};
-const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF, BOOL, TRUE, FALSE, ELSE};
+const int countWords = 16;
+const string words[] = {"void", "int", "double", "switch", "case", "break", "if", "bool", "true", "false", "else", "char", "short", "long", "return", "default"};
+const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF, BOOL, TRUE, FALSE, ELSE, CHAR, SHORT, LONG, RETURN, DEFAULT};
 
 
 const string ones = "(){};,+:-*/%=<";
@@ -144,6 +144,12 @@ public:
             nextChar();
             nextChar();
             return new Word(INC);
+        }
+        // --
+        if (text[cp] == '-' && text[cp + 1] == '-') {
+            nextChar();
+            nextChar();
+            return new Word(DEC);
         }
 
         // ();
