@@ -34,7 +34,6 @@ enum TypeWord {
     ELSE,
     SWITCH,
     CASE,
-    ARRAY,
     BREAK,
     DEFAULT,
 
