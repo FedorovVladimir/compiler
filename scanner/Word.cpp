@@ -24,6 +24,10 @@ public:
         return w->typeWord != tw;
     }
 
+    friend bool operator==(const Word *w, TypeWord tw) {
+        return w->typeWord == tw;
+    }
+
     string str() {
         return toText(typeWord) + " " + text;
     }

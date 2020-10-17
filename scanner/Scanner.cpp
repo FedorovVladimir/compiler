@@ -71,8 +71,6 @@ public:
         this->cp = 0;
         this->cl = 1;
         this->cc = 1;
-        cout << "Scanner get text!" << endl;
-        cout << this->text << endl;
     }
 
     Word *next() {
