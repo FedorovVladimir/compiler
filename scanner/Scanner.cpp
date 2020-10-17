@@ -9,12 +9,12 @@
 
 using namespace std;
 
-const int countWords = 16;
-const string words[] = {"void", "int", "double", "switch", "case", "break", "if", "bool", "true", "false", "else", "char", "short", "long", "return", "default"};
-const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF, BOOL, TRUE, FALSE, ELSE, CHAR, SHORT, LONG, RETURN, DEFAULT};
+const int countWords = 17;
+const string words[] = {"void", "int", "double", "switch", "case", "break", "if", "bool", "true", "false", "else", "char", "short", "long", "return", "default", "while"};
+const TypeWord wordsTypes[] = {VOID, INT, DOUBLE, SWITCH, CASE, BREAK, IF, BOOL, TRUE, FALSE, ELSE, CHAR, SHORT, LONG, RETURN, DEFAULT, WHILE};
 
 
-const string ones = "(){};,+:-*/%=<";
+const string ones = "(){};,+:-*/%=<>";
 const TypeWord onesTypes[] = {
         OPEN_KRUGLAY,
         CLOSE_KRUGLAY,
@@ -30,7 +30,8 @@ const TypeWord onesTypes[] = {
         MOD,
         EQUAL,
         LESS,
-        ELSE
+        ELSE,
+        LARGER
 };
 
 class Scanner {
@@ -150,6 +151,18 @@ public:
             nextChar();
             nextChar();
             return new Word(DEC);
+        }
+        // <=
+        if (text[cp] == '<' && text[cp + 1] == '=') {
+            nextChar();
+            nextChar();
+            return new Word(LESS_EQUAL);
+        }
+        // >=
+        if (text[cp] == '>' && text[cp + 1] == '=') {
+            nextChar();
+            nextChar();
+            return new Word(LARGER_EQUAL);
         }
 
         // ();

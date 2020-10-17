@@ -113,6 +113,14 @@ public:
             return "return";
         } else if (tw == DEFAULT) {
             return "default";
+        } else if (tw == LARGER) {
+            return ">";
+        } else if (tw == LESS_EQUAL) {
+            return "<=";
+        } else if (tw == LARGER_EQUAL) {
+            return ">=";
+        } else if (tw == WHILE) {
+            return "while";
         } else {
             return "TypeWord not found!";
         }

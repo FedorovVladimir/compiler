@@ -40,10 +40,10 @@ void testScannerFile(const string &filename) {
 
 void testScannerAllFiles() {
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/hello_world.c");
-    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/switch_break.c");
+//    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/switch_break.c");
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_assignment.c");
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_if_else.c");
-//    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_if_while_func_bool.c");
+    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_if_while_func_bool.c");
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_massive_for_if.c");
 }
 
