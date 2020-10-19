@@ -2,6 +2,7 @@
 #include <fstream>
 #include "scanner/Scanner.cpp"
 #include "scanner/TypeWord.cpp"
+#include "scanner/GScanner.cpp"
 
 using namespace std;
 
@@ -41,9 +42,9 @@ void testScannerFile(const string &filename) {
 }
 
 void testScannerAllFiles() {
-//    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/hello_world.c");
+    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/hello_world.c");
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/switch_break.c");
-    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_assignment.c");
+//    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_assignment.c");
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_if_else.c");
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_if_while_func_bool.c");
 //    testScannerFile("/home/vladimir/CLionProjects/compiler/resources/var_massive_for_if.c");
@@ -51,5 +52,14 @@ void testScannerAllFiles() {
 
 int main() {
     testScannerAllFiles();
+
+    GScanner gScanner;
+
+    gScanner.push("S");
+
+    while (!gScanner.empty()) {
+        gScanner.display();
+        gScanner.pop();
+    }
     return 0;
 }
